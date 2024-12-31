@@ -19,3 +19,41 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer utilities {
+  .light-theme {
+    @apply bg-white text-black;
+  }
+  .dark-theme {
+    @apply bg-black text-white;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%); /* Start off-screen to the right */
+    opacity: 0; /* Start invisible */
+  }
+  100% {
+    transform: translateX(0); /* End in the original position */
+    opacity: 1; /* Fully visible */
+  }
+}
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateY(100%); /* Start off-screen to the right */
+    opacity: 0; /* Start invisible */
+  }
+  100% {
+    transform: translateY(0); /* End in the original position */
+    opacity: 1; /* Fully visible */
+  }
+}
+
+.animated {
+  animation: slideInFromRight 1.5s ease-in-out;
+}
+.animatedText {
+  animation: slideInFromLeft 1.5s ease-in-out;
+}
+
