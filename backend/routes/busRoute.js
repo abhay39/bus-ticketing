@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { BookTicket, CreateNewBus } from '../controllers/BusController.js';
+import { BookTicket, CreateNewBus, getCurrentBus } from '../controllers/BusController.js';
 import Bus from '../models/Bus.js';
 
 const busRoute = express.Router();
@@ -19,5 +19,6 @@ busRoute.post("/register-new-bus", CreateNewBus)
 
 busRoute.post('/book-bus-ticket', BookTicket)
 
+busRoute.post('/:id', getCurrentBus)
 
 export default busRoute;

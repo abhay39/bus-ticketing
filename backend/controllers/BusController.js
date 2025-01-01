@@ -5,13 +5,13 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const CreateNewBus = async (req, res) => {
     try {
-        const { busName, from, end, stoppage, departureTime, arrivalTime, ticketPrice, busNumber, busContactNumber, addedBy } = req.body;
+        const { busName, from, end, stoppage, departureTime, arrivalTime, ticketPrice, busNumber, busContactNumber, addedBy,busImages } = req.body;
 
         const findIfTheSameBusName = await Bus.findOne({ busName });
 
         if (findIfTheSameBusName) return res.status(400).json({ message: 'Bus with same name already exists' });
 
-        const newBus = new Bus({ busName, from, end, stoppage, departureTime, arrivalTime, ticketPrice, busNumber, busContactNumber, addedBy });
+        const newBus = new Bus({ busName, from, end, stoppage, departureTime, arrivalTime, ticketPrice, busNumber, busContactNumber, addedBy,busImages });
         await newBus.save();
         res.status(201).json({ message: 'Bus registered successfully' });
     } catch (error) {
@@ -129,4 +129,17 @@ export const resetAllBusSeats = async () => {
       console.error('Error resetting bus seats:', error);
     }
   };
+
+  export const getCurrentBus=async(req,res)=>{
+    try{
+        const id=req.params.id;
+        console.log("ID: ",id)
+        const getBus=await Bus.findById(id);
+        res.status(200).json(getBus);
+    }catch(err){
+        res.status(500).json({
+            "message":err.message
+        })
+    }
+  }
 

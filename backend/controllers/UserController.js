@@ -1,7 +1,7 @@
 import User from "../models/User.js";
 import Ticket from "../models/Ticket.js";
 import jwt from 'jsonwebtoken'
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 export const CreateNewAccount=async (req, res) => {
     try {
